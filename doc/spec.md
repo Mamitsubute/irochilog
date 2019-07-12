@@ -20,7 +20,7 @@
 ## 基本機能
 - アカウント管理
   - twitter api(Omni Auth) を通してアカウント登録することができる  
-    実装は devise を利用する．
+    実装は devise を利用する．  
     参考：  
     https://github.com/plataformatec/devise/wiki/OmniAuth:-Overview  
     https://qiita.com/cigalecigales/items/f4274088f20832252374  
@@ -56,21 +56,24 @@
 - 設定画面  
   本アプリの設定の確認・変更を行う．参照または変更可能な項目を以下に示す  
   - ichilog バージョン(readonly)
-  - 
+  - ユーザ名(readonly?)
+  - FIXME
 
 - メニュー  
   画面下部に配置し，常に表示する．以下のメニューアイコンを表示する  
-  - 一覧
+  - 一覧  
     「一覧画面」を参照．
-  - ランキング
+  - ランキング  
     「ランキング画面」を参照．
   - ログ
+    「ログ画面」を参照．
   - 設定
+    「設定画面」を参照．
 
 - その他
-  - 外部サイトをとおして，ポケモンリストを更新する
+  - 外部サイトをとおして，ポケモンリストを更新する  
     以下のサイトをスクレイピングして取得する．  
-    https://pokemongo.gamewith.jp/article/show/26775
+    https://pokemongo.gamewith.jp/article/show/26775  
     ※ ポケモンずかんの「図鑑番号」は重複するので，ID としては使用できないことに注意
 
 
