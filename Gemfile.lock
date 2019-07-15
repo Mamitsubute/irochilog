@@ -47,7 +47,7 @@ GEM
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
-    bindex (0.7.0)
+    bindex (0.8.1)
     bootsnap (1.4.4)
       msgpack (~> 1.0)
     builder (3.2.3)
@@ -84,7 +84,7 @@ GEM
     io-like (0.3.0)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
-    libv8 (7.3.492.27.1)
+    libv8 (7.3.492.27.1-x86_64-linux)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -215,7 +215,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 RUBY VERSION
-   ruby 2.5.5p157
+   ruby 2.5.3p105
 
 BUNDLED WITH
-   2.0.2
+   1.17.3
