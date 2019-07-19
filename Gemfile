@@ -30,6 +30,16 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
+# use dotenv to hide secret key
+gem 'dotenv'
+# Web Scraping
+gem 'nokogiri'
+# login
+gem 'devise'
+gem 'omniauth'
+#gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
