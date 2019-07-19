@@ -62,3 +62,5 @@ I planned to tweet our product news(e.g. what is now updated and so on). and fol
   ただし、localhost 系の設定については、production リリース時には外すのが懸命だろう。
 * `Allow this application to be used to Sign in with Twitter` にチェック
 
+
+以上
