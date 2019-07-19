@@ -16,11 +16,13 @@ namespace :scrape do
     # htmlをパース(解析)してオブジェクトを作成
     doc = Nokogiri::HTML.parse(html, nil, charset)
 
+    r = Regexp.compile('^[0-9]*')
+    r2 = Regexp.compile('[\p{katakana}　ー－&&[^ -~｡-ﾟ]()（）]+(\(.+\))*')
     doc.xpath('//tr[contains(@class, "w-idb-element")]').each do |node|
       raw = node.text
-      no = raw.slice(0, 2)
-      name = raw.slice(3..-1)
-      name = name.gsub(/[0-9\.]/, '')
+      # 809めるめたるメルメタル
+      no = r.match(raw)[0]
+      name = r2.match(raw)[0]
       puts "#{no} #{name}"
     end
   end
