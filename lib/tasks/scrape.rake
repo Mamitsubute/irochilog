@@ -23,7 +23,13 @@ namespace :scrape do
       # 809めるめたるメルメタル
       no = r.match(raw)[0]
       name = r2.match(raw)[0]
-      puts "#{no} #{name}"
+      # get type
+      type_raw = node.attribute('data-col3').to_s
+      type = type_raw.split('<hr>').join(",")
+      # get image url
+      src_raw = node.xpath('td/a/img')
+      url = src_raw.attribute("data-original")
+      puts "#{no} #{name} #{type} #{url}"
     end
   end
 end
