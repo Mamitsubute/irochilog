@@ -30,6 +30,8 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
+# use vue
+gem 'webpacker', github: 'rails/webpacker'
 # use dotenv to hide secret key
 gem 'dotenv'
 # Web Scraping
