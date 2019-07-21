@@ -25,7 +25,7 @@ docker-compose build
 
 ```
 docker-compose run web web bundle install
-docker-compose run web rails webpakcer:install
+docker-compose run web rails webpacker:install
 docker-compose run web rails webpacker:install:vue
 ```
 
