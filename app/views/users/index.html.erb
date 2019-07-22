@@ -3,10 +3,8 @@
   The time is now: <%= Time.now %>
 </p>
 
+<%= render 'sessions/new' %>
+
 <%= link_to "Sign in with Twitter", user_twitter_omniauth_authorize_path() -%>
 
-<!-- Rendered by Vue.js -->
 <div id='app'></div>
-<!-- // Rendered by Vue.js -->
-<%= javascript_pack_tag 'application' %>
-<%= stylesheet_pack_tag 'application' %>

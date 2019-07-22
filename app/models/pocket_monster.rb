@@ -1,0 +1,2 @@
+class PocketMonster < ApplicationRecord
+end
