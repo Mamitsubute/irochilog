@@ -24,7 +24,7 @@ docker-compose build
 以下のコマンドを実行する。
 
 ```
-docker-compose run web web bundle install
+docker-compose run web bundle install
 docker-compose run web rails webpakcer:install
 docker-compose run web rails webpacker:install:vue
 ```
@@ -92,4 +92,11 @@ ERROR: Encountered errors while bringing up the project.
 ```
 上記のようなエラーの場合は、Docker Desktopを再起動する
 
-
+### 下記のyarnエラーがでた
+```
+  Your Yarn packages are out of date!
+  Please run `yarn install` to update.
+'''
+yarn installをするが、エラー消えず。
+config/webpacker.ymlを編集し、check_yarn_integrity: falseとしたら解決
+参考：https://github.com/rails/webpacker/blob/master/README.md
