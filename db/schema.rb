@@ -10,10 +10,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_15_075237) do
+ActiveRecord::Schema.define(version: 2019_07_22_164026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "pocket_monster_types", force: :cascade do |t|
+    t.bigint "pocket_monster_id"
+    t.bigint "type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pocket_monster_id"], name: "index_pocket_monster_types_on_pocket_monster_id"
+    t.index ["type_id"], name: "index_pocket_monster_types_on_type_id"
+  end
+
+  create_table "pocket_monsters", force: :cascade do |t|
+    t.integer "pokedex_number"
+    t.string "pokemon_name"
+    t.string "image_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "poket_monster_types", force: :cascade do |t|
+    t.bigint "pocket_monster_id"
+    t.bigint "type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pocket_monster_id"], name: "index_poket_monster_types_on_pocket_monster_id"
+    t.index ["type_id"], name: "index_poket_monster_types_on_type_id"
+  end
+
+  create_table "posession_monsters", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "pocket_monster_id"
+    t.integer "posession_amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pocket_monster_id"], name: "index_posession_monsters_on_pocket_monster_id"
+    t.index ["user_id"], name: "index_posession_monsters_on_user_id"
+  end
+
+  create_table "types", force: :cascade do |t|
+    t.string "type_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -29,4 +71,10 @@ ActiveRecord::Schema.define(version: 2019_07_15_075237) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "pocket_monster_types", "pocket_monsters"
+  add_foreign_key "pocket_monster_types", "types"
+  add_foreign_key "poket_monster_types", "pocket_monsters"
+  add_foreign_key "poket_monster_types", "types"
+  add_foreign_key "posession_monsters", "pocket_monsters"
+  add_foreign_key "posession_monsters", "users"
 end
