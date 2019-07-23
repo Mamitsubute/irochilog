@@ -32,15 +32,6 @@ ActiveRecord::Schema.define(version: 2019_07_22_164026) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "poket_monster_types", force: :cascade do |t|
-    t.bigint "pocket_monster_id"
-    t.bigint "type_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["pocket_monster_id"], name: "index_poket_monster_types_on_pocket_monster_id"
-    t.index ["type_id"], name: "index_poket_monster_types_on_type_id"
-  end
-
   create_table "posession_monsters", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "pocket_monster_id"
@@ -73,8 +64,6 @@ ActiveRecord::Schema.define(version: 2019_07_22_164026) do
 
   add_foreign_key "pocket_monster_types", "pocket_monsters"
   add_foreign_key "pocket_monster_types", "types"
-  add_foreign_key "poket_monster_types", "pocket_monsters"
-  add_foreign_key "poket_monster_types", "types"
   add_foreign_key "posession_monsters", "pocket_monsters"
   add_foreign_key "posession_monsters", "users"
 end
