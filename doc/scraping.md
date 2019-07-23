@@ -25,8 +25,7 @@ https://pokemongo.gamewith.jp/article/show/26775
 - script を作成する  
   実装については `lib/task/scrape.rake` を参照してください．
   - 取得先サイトについては chrome 開発者ツールをもとに，適切な XPath を設定した．
-  - 正規表現は以下を参考にした．  
-    https://qiita.com/necojackarc/items/cad2d4eb80f0629ad196
+  - マスタ系の DB への値注入までを行う
 
 ## Execute script
 
