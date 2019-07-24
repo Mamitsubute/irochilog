@@ -1,11 +1,2 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user: one
-  pocket_monster: one
-  posession_amount: 
-
-two:
-  user: two
-  pocket_monster: two
-  posession_amount: 
