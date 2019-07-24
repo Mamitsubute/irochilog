@@ -1,9 +1,2 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  pocket_monster: one
-  type: one
-
-two:
-  pocket_monster: two
-  type: two
