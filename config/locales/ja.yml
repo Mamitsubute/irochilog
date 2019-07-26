@@ -1,0 +1,10 @@
+ja:
+  sort_key:
+    name_asc: 'なまえ(昇順)'
+    name_dsc: 'なまえ(降順)'
+    own: 'もっている'
+    not_own: 'もっていない'
+    pokedex_asc: '図鑑番号(昇順)'
+    pokedex_dsc: '図鑑番号(降順)'
+    get_date_asc: 'つかまえた日(昇順)'
+    get_date_dsc: 'つかまえた日(降順)'

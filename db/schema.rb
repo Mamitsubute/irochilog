@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_22_164026) do
+ActiveRecord::Schema.define(version: 2019_07_26_090845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,8 +51,25 @@ ActiveRecord::Schema.define(version: 2019_07_22_164026) do
     t.index ["user_id"], name: "index_posession_monsters_on_user_id"
   end
 
+  create_table "shiny_posession_monsters", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "pocket_monster_id"
+    t.integer "posession_amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pocket_monster_id"], name: "index_shiny_posession_monsters_on_pocket_monster_id"
+    t.index ["user_id"], name: "index_shiny_posession_monsters_on_user_id"
+  end
+
   create_table "types", force: :cascade do |t|
     t.string "type_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_configs", force: :cascade do |t|
+    t.integer "sort_key", default: 0, null: false
+    t.string "user_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -77,4 +94,6 @@ ActiveRecord::Schema.define(version: 2019_07_22_164026) do
   add_foreign_key "poket_monster_types", "types"
   add_foreign_key "posession_monsters", "pocket_monsters"
   add_foreign_key "posession_monsters", "users"
+  add_foreign_key "shiny_posession_monsters", "pocket_monsters"
+  add_foreign_key "shiny_posession_monsters", "users"
 end
