@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/webpacker.git
-  revision: 2c2b9ffc055d13242b0ae60807609cc382bb0337
+  revision: cc98e59652f22c723fac0308199cff5a42ad49ce
   specs:
     webpacker (4.0.7)
       activesupport (>= 4.2)
@@ -168,7 +168,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.19.0, < 2.0)
-    rake (12.3.2)
+    rake (12.3.3)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
