@@ -45,21 +45,33 @@ class PokemonsController < ApplicationController
     pokemon = PocketMonster.find(pokemon_id)
     shiny = params[:shiny] | false
     target_table = shiny ? ShinyPosessionMonster : PosessionMonster
-    # toggle
     if pokemon.present?
       posession = target_table
                 .where("pocket_monster_id = ?", pokemon.id)
                 .where("user_id = ?", current_user.id)
-      if posession.present?
-        posession.destroy
-      else
+      unless posession.present?
         target_table.new(
           :user_id => current_user.id,
           :pocket_monster_id => pokemon.id,
           :posession_amount => 1
         ).save
       end
-   end
+    end
+  end
+
+  def destroy
+    pokemon_id = params[:id]
+    pokemon = PocketMonster.find(pokemon_id)
+    shiny = params[:shiny] | false
+    target_table = shiny ? ShinyPosessionMonster : PosessionMonster
+    if pokemon.present?
+      posession = target_table
+                .where("pocket_monster_id = ?", pokemon.id)
+                .where("user_id = ?", current_user.id)
+      if posession.present?
+        posession.destroy!
+      end
+    end
   end
 
   private
