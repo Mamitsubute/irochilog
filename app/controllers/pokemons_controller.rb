@@ -1,8 +1,10 @@
 class PokemonsController < ApplicationController
-  #before_action :authenticate_user!
+  include Sort
+  before_action :authenticate_user!
 
   # GET /pokemons
   def index
+    sort_key = params[:sort] || :name_asc
     @pokemons = PocketMonster
                   .includes(:types)
                   .joins(:types)
@@ -10,8 +12,8 @@ class PokemonsController < ApplicationController
 
     ret = {
       list: {
-        sort_key: "desc",
-        monsters: self.get_pokemon_list(@pokemons)
+        sort_key: translate_sort_key(sort_key),
+        monsters: get_pokemon_list(@pokemons)
       },
     }
     render json: ret
@@ -36,18 +38,58 @@ class PokemonsController < ApplicationController
     }
   end
 
+  # no CREATE method, user mustnot create original pokemon.
+
+  def update
+    pokemon_id = params[:id]
+    pokemon = PocketMonster.find(pokemon_id)
+    shiny = params[:shiny] | false
+    target_table = shiny ? ShinyPosessionMonster : PosessionMonster
+    if pokemon.present?
+      posession = target_table
+                .where("pocket_monster_id = ?", pokemon.id)
+                .where("user_id = ?", current_user.id)
+      unless posession.present?
+        target_table.new(
+          :user_id => current_user.id,
+          :pocket_monster_id => pokemon.id,
+          :posession_amount => 1
+        ).save
+      end
+    end
+  end
+
+  def destroy
+    pokemon_id = params[:id]
+    pokemon = PocketMonster.find(pokemon_id)
+    shiny = params[:shiny] | false
+    target_table = shiny ? ShinyPosessionMonster : PosessionMonster
+    if pokemon.present?
+      posession = target_table
+                .where("pocket_monster_id = ?", pokemon.id)
+                .where("user_id = ?", current_user.id)
+      if posession.present?
+        posession.destroy!
+      end
+    end
+  end
+
+  private
   def get_pokemon_list(pokemons)
     user_id = current_user.id
     ret = []
+    pm = PosessionMonster
+            .select(:user_id, :pocket_monster_id)
+            .where(:user_id => user_id)
+    spm = ShinyPosessionMonster
+            .select(:user_id, :pocket_monster_id)
+            .where(:user_id => user_id)
     pokemons.each do |mon|
-      pm = PosessionMonster
-              .where(:user_id => user_id)
-              .where(:pocket_monster_id => mon.id)
       ret.push({
         :name => mon.pokemon_name,
         :type => mon.types.pluck(:type_name),
-        :normal => pm.present? ? pm.normal : false,
-        :irochi => pm.present? ? pm.irochi : false,
+        :normal => pm.where("pocket_monster_id = ?", mon.id).present?,
+        :irochi => spm.where("pocket_monster_id = ?", mon.id).present?,
         :image_url => mon.image_url
       })
     end

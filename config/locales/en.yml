@@ -31,3 +31,12 @@
 
 en:
   hello: "Hello world"
+  sort_key:
+    name_asc: 'name(asc)'
+    name_dsc: 'name(dsc)'
+    own: 'owned'
+    not_own: 'not owned'
+    pokedex_asc: 'pokedex no(asc)'
+    pokedex_dsc: 'pokedex no(dsc)'
+    get_date_asc: 'gete date(asc)'
+    get_date_dsc: 'gete date(dsc)'
