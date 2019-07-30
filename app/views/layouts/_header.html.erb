@@ -1,3 +1,5 @@
 <header>
-  <%= link_to 'logout', :controller => 'devise/sessions', :action => "destroy"  %>
+  <% if user_signed_in? %>
+    <%= link_to 'logout', :controller => 'devise/sessions', :action => "destroy"  %>
+  <% end %>
 </header>
