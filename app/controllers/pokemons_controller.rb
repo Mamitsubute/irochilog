@@ -79,18 +79,20 @@ class PokemonsController < ApplicationController
   def get_pokemon_list(pokemons)
     user_id = current_user.id
     ret = []
-    pm = PosessionMonster
+    pm_ids = PosessionMonster
             .select(:user_id, :pocket_monster_id)
             .where(:user_id => user_id)
-    spm = ShinyPosessionMonster
+            .pluck(:pocket_monster_id)
+    spm_ids = ShinyPosessionMonster
             .select(:user_id, :pocket_monster_id)
             .where(:user_id => user_id)
+            .pluck(:pocket_monster_id)
     pokemons.each do |mon|
       ret.push({
         :name => mon.pokemon_name,
         :type => mon.types.pluck(:type_name),
-        :normal => pm.where("pocket_monster_id = ?", mon.id).present?,
-        :irochi => spm.where("pocket_monster_id = ?", mon.id).present?,
+        :normal => pm_ids[mon.id].present?,
+        :irochi => spm_ids[mon.id].present?,
         :image_url => mon.image_url
       })
     end
