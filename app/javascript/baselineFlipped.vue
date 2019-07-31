@@ -32,7 +32,7 @@
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title>Irochi Log</v-toolbar-title>
     <v-spacer></v-spacer>
-      <v-btn color="blue" href="/users/sign_out" dark>
+      <v-btn color="bluedark" href="/users/sign_out">
         <v-icon dark>logout</v-icon>
       </v-btn>
     </v-toolbar>
