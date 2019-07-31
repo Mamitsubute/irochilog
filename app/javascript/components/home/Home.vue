@@ -35,7 +35,7 @@
           {text: 'test',
           value: 'num'}
         ],
-        pokemons: []
+        pokemons: [],
         sort_keys: []
       };
     },
