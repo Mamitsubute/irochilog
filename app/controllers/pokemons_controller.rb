@@ -13,7 +13,8 @@ class PokemonsController < ApplicationController
     ret = {
       list: {
         sort_key: translate_sort_key(sort_key),
-        monsters: get_pokemon_list(@pokemons)
+        monsters: get_pokemon_list(@pokemons),
+        sort_keys: get_sort_keys(),
       },
     }
     render json: ret
@@ -94,5 +95,16 @@ class PokemonsController < ApplicationController
       })
     end
     ret
+  end
+
+  def get_sort_keys
+    ret = []
+    UserConfig.sort_keys.each do| k, v | 
+      ret.append({
+        :name => I18n.t("sort_key.#{k}"),
+        :key => k.to_s
+      })
+    end
+    return ret
   end
 end
