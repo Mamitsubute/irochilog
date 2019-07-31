@@ -1,7 +1,12 @@
 <template>
   <div id="home">
     <div class="content">
- 
+
+    <v-select
+      :items="sort_keys"
+      label="Standard"
+    ></v-select>
+
     <ul>
       <li v-for="pokemon in pokemons">
         <img v-bind:src="pokemon.image_url">
@@ -30,7 +35,8 @@
           {text: 'test',
           value: 'num'}
         ],
-        pokemons: []
+        pokemons: [],
+        sort_keys: []
       };
     },
     watch: {
@@ -39,6 +45,7 @@
           axios.get('pokemons/').then(function (res){
             console.log(res.data.list.monsters);
             self.pokemons = res.data.list.monsters;
+            self.sort_keys = res.data.list.sort_keys;
           });
         },
         deep: true,
@@ -49,6 +56,7 @@
       axios.get('pokemons/').then(function (res){
         console.log(res.data.list.monsters);
         self.pokemons = res.data.list.monsters;
+        self.sort_keys = res.data.list.sort_keys.map(function(a){ return a.name});
       });
     },
   }

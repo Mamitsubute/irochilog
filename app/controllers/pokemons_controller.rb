@@ -13,7 +13,8 @@ class PokemonsController < ApplicationController
     ret = {
       list: {
         sort_key: translate_sort_key(sort_key),
-        monsters: get_pokemon_list(@pokemons)
+        monsters: get_pokemon_list(@pokemons),
+        sort_keys: get_sort_keys(),
       },
     }
     render json: ret
@@ -78,21 +79,35 @@ class PokemonsController < ApplicationController
   def get_pokemon_list(pokemons)
     user_id = current_user.id
     ret = []
-    pm = PosessionMonster
+    pm_ids = PosessionMonster
             .select(:user_id, :pocket_monster_id)
             .where(:user_id => user_id)
-    spm = ShinyPosessionMonster
+            .pluck(:pocket_monster_id)
+    spm_ids = ShinyPosessionMonster
             .select(:user_id, :pocket_monster_id)
             .where(:user_id => user_id)
+            .pluck(:pocket_monster_id)
     pokemons.each do |mon|
       ret.push({
+        :id => mon.id,
         :name => mon.pokemon_name,
         :type => mon.types.pluck(:type_name),
-        :normal => pm.where("pocket_monster_id = ?", mon.id).present?,
-        :irochi => spm.where("pocket_monster_id = ?", mon.id).present?,
+        :normal => pm_ids[mon.id].present?,
+        :irochi => spm_ids[mon.id].present?,
         :image_url => mon.image_url
       })
     end
     ret
+  end
+
+  def get_sort_keys
+    ret = []
+    UserConfig.sort_keys.each do| k, v | 
+      ret.append({
+        :name => I18n.t("sort_key.#{k}"),
+        :key => k.to_s
+      })
+    end
+    return ret
   end
 end
