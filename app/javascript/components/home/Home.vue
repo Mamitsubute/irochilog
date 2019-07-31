@@ -4,8 +4,9 @@
  
     <ul>
       <li v-for="pokemon in pokemons">
+        <img v-bind:src="pokemon.image_url">
         {{pokemon.name}}
-        
+        {{pokemon.type}}        
       </li>
       </ul>
     </div>
@@ -29,7 +30,6 @@
           {text: 'test',
           value: 'num'}
         ],
-        //pokemons:[{num: 5, name: 'piyo'},{num: 5, name: 'piyo'},{num: 5, name: 'piyo'},{num: 5, name: 'piyo'},{num: 5, name: 'piyo'},{num: 5, name: 'hoge'}, {num: 5, name: 'huga'}, {num: 5, name: 'piyo'},]
         pokemons: []
       };
     },
@@ -51,15 +51,5 @@
         self.pokemons = res.data.list.monsters;
       });
     },
-//    created(){
-//      axios.get('pokemons/').then(function (res){
-//        console.log(res.data.list.monsters);
-//        self.pokemons = res.data.list.monsters;
-//        self.pokemons = [
-//        {name: 'hogehoge'},
-//        {name: 'hugahuga'},
-//        ]
-//      });
-//    },
   }
 </script>
