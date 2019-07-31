@@ -1,12 +1,13 @@
 <template>
-  <v-app id="inspire">
+  <v-app id="inspire" dark>
     <v-navigation-drawer
       v-model="drawer"
       fixed
-      right
+      clipped
       app
     >
       <v-list dense>
+        <router-link tag="li" to="*">
         <v-list-tile @click="">
           <v-list-tile-action>
             <v-icon>home</v-icon>
@@ -15,6 +16,8 @@
             <v-list-tile-title>Home</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
+        </router-link>
+
         <v-list-tile @click="">
           <v-list-tile-action>
             <v-icon>contact_mail</v-icon>
@@ -25,44 +28,28 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar color="cyan" dark fixed app>
-      <v-spacer></v-spacer>
-      <v-toolbar-title>Application</v-toolbar-title>
+    <v-toolbar app fixed clipped-left>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-title>Irochi Log</v-toolbar-title>
+    <v-spacer></v-spacer>
+      <v-btn color="blue" dark>
+        <v-icon dark>logout</v-icon>
+      </v-btn>
     </v-toolbar>
     <v-content>
-      <v-container fluid fill-height>
-        <v-layout justify-center align-center>
-          <v-flex text-xs-center>
-            <v-tooltip left>
-              <template v-slot:activator="{ on }">
-                <v-btn :href="source" icon large target="_blank" v-on="on">
-                  <v-icon large>code</v-icon>
-                </v-btn>
-              </template>
-              <span>Source</span>
-            </v-tooltip>
-            <v-tooltip right>
-              <template v-slot:activator="{ on }">
-                <v-btn icon large href="https://codepen.io/johnjleider/pen/BYqXgr" target="_blank" v-on="on">
-                  <v-icon large>mdi-codepen</v-icon>
-                </v-btn>
-              </template>
-              <span>Codepen</span>
-            </v-tooltip>
-          </v-flex>
-        </v-layout>
-      </v-container>
     </v-content>
-    <v-footer color="cyan" app>
-      <v-spacer></v-spacer>
-      <span class="white--text">&copy; 2017</span>
-    </v-footer>
+    <router-view class="router-view"></router-view>
   </v-app>
 </template>
 
+
 <script>
+import Home from 'components/home/Home'
   export default {
+    name: 'App',
+    components:{
+      Home
+    },
     data: () => ({
       drawer: null
     }),

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Irochilog</title>
+    <title>Irochi Log</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="    stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
     <% if user_signed_in? %>
       <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
       <%= javascript_pack_tag 'application' %>
@@ -16,8 +16,7 @@
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
-    <%= yield %>
-    <%= render 'layouts/footer' %>
+      <%= yield %>
+  <div id="app"></div>
   </body>
 </html>
