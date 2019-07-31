@@ -89,6 +89,7 @@ class PokemonsController < ApplicationController
             .pluck(:pocket_monster_id)
     pokemons.each do |mon|
       ret.push({
+        :id => mon.id,
         :name => mon.pokemon_name,
         :type => mon.types.pluck(:type_name),
         :normal => pm_ids[mon.id].present?,
