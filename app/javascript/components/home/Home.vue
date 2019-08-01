@@ -1,20 +1,33 @@
 <template>
   <div id="home">
     <div class="content">
-
     <v-select
       :items="sort_keys"
       label="Standard"
     ></v-select>
-
-    <ul>
-      <li v-for="pokemon in pokemons">
-        <img v-bind:src="pokemon.image_url">
-        {{pokemon.name}}
-        {{pokemon.type}}        
-      </li>
-      </ul>
+        <v-layout rou wrap>
+          <v-flex xs6 md4 xl3 v-for="pokemon in pokemons" :key="pokemon.id">
+            <v-card
+              class="mx-auto"
+              :flat="flat"
+              :loading="loading"
+              :width="width"
+              :height="height"
+            >
+              <v-img height="200px" width="200px" v-bind:src="pokemon.image_url">
+              </v-img>
+              <v-card-text>{{pokemon.name}}</v-card-text>
+                <v-btn icon>
+                  <v-icon>share</v-icon>
+                </v-btn>
+                <v-btn icon>
+                  <v-icon>bookmark</v-icon>
+                </v-btn>
+            </v-card>
+          </v-flex>
+        </v-layout>
     </div>
+
   </div>
 
 </template>
@@ -27,14 +40,6 @@
       return {
         loading: true,
         totalPokemons: 0,
-        headers: [
-          {
-            text: 'なまえ',
-            value: 'name',
-          },
-          {text: 'test',
-          value: 'num'}
-        ],
         pokemons: [],
         sort_keys: []
       };
