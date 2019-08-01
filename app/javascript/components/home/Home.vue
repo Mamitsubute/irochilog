@@ -6,14 +6,30 @@
       :items="sort_keys"
       label="Standard"
     ></v-select>
-
-    <ul>
-      <li v-for="pokemon in pokemons">
-        <img v-bind:src="pokemon.image_url">
-        {{pokemon.name}}
-        {{pokemon.type}}        
-      </li>
-      </ul>
+      <div >
+        <v-layout rou wrap>
+          <v-flex xs3 v-for="pokemon in pokemons" :key="pokemon.id">
+            <v-card
+              class="mx-auto"
+              :flat="flat"
+              :loading="loading"
+              :width="width"
+              :height="height"
+            >
+              <v-img height="120px" width="120px" v-bind:src="pokemon.image_url">
+              </v-img>
+              <v-card-text>{{pokemon.name}}</v-card-text>
+              <v-card-actions v-if="actions">
+                <v-btn icon>
+                  <v-icon>home</v-icon>
+                </v-btn>
+                <v-btn text>Click</v-btn>
+                <v-btn outlined>Click</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-flex>
+        </v-layout>
+        </div>
     </div>
   </div>
 
