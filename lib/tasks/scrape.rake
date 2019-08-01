@@ -47,18 +47,21 @@ namespace :scrape do
         end
         type_arr.push type
       end
-      pokemon = PocketMonster.new(
-        :pokedex_number => no.to_i,
-        :pokemon_name => name,
-        :image_url => url
-      )
-      pokemon.save
-      type_arr.each do |ta|
-        PocketMonsterType.new(
-          :pocket_monster_id => pokemon.id,
-          :type_id => ta.id
-        ).save
+      unless PocketMonster.where(:pokedex_number => no.to_i).where(:pokemon_name => name).first
+        pokemon = PocketMonster.new(
+          :pokedex_number => no.to_i,
+          :pokemon_name => name,
+          :image_url => url
+        )
+        pokemon.save
+        type_arr.each do |ta|
+          PocketMonsterType.new(
+            :pocket_monster_id => pokemon.id,
+            :type_id => ta.id
+          ).save
+        end
       end
+
    end
   end
 end
