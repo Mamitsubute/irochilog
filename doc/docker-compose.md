@@ -49,6 +49,12 @@ docker-compose up
 docker-compose run web rake db:create
 docker-compose run web rake db:migrate
 ```
+### ポケモンデータのスクレイピング
+スクレイピングのバッチ処理の実行は以下のコマンドを実行する
+
+```
+docker-compose run web rake scrape:get_pokemon
+```
 
 ### railsページの表示
 
