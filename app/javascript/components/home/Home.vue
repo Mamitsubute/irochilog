@@ -13,6 +13,7 @@
               :loading="loading"
               :width="width"
               :height="height"
+
             >
               <v-img height="200px" width="200px" v-bind:src="pokemon.image_url">
               </v-img>
