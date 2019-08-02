@@ -7,7 +7,7 @@
       app
     >
       <v-list dense>
-        <router-link tag="li" to="*">
+        <router-link tag="li" to="/">
         <v-list-tile @click="">
           <v-list-tile-action>
             <v-icon>home</v-icon>
@@ -17,15 +17,16 @@
           </v-list-tile-content>
         </v-list-tile>
         </router-link>
-
+        <router-link tag="li" to="/settings">
         <v-list-tile @click="">
           <v-list-tile-action>
             <v-icon>contact_mail</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title>Contact</v-list-tile-title>
+            <v-list-tile-title>Setting</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
+        </router-link>
       </v-list>
     </v-navigation-drawer>
     <v-toolbar app fixed clipped-left>
