@@ -1,6 +1,24 @@
 <template>
   <div id="home">
     <div class="content">
+    <v-layout>
+      <v-flex xl12>
+          <v-toolbar
+            dense
+            floating
+            xl12
+          >
+            <v-text-field
+              hide-details
+              prepend-icon="search"
+              single-line
+            ></v-text-field>
+            <v-btn icon>
+              <v-icon>search</v-icon>
+            </v-btn>
+          </v-toolbar>
+      </v-flex>
+    </v-layout>
     <v-select
       :items="sort_keys"
       label="Standard"
@@ -64,6 +82,6 @@
         self.pokemons = res.data.list.monsters;
         self.sort_keys = res.data.list.sort_keys.map(function(a){ return a.name});
       });
-    },
+    }
   }
 </script>

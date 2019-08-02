@@ -41,7 +41,7 @@ yarn.lock が最新になっていれば，以下を叩けば必要なライブ�
 yarn
 ```
 
-## Application 動作に必要なも
+## Application 動作に必要なもの
 
 ### .env ファイルの作成
 
